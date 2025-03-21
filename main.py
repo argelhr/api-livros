@@ -46,5 +46,26 @@ def save():
         return jsonify({"error": "Erro inesperado"}), 500
 
 
+@app.route("/api/livros", methods=["GET"])
+def get_livros():
+    try:
+        with sqlite3.connect("database.db") as conn:
+            livros = conn.execute("SELECT * FROM BOOKS").fetchall()
+
+        livros_list = []
+        for livro in livros:
+            livros_list.append({
+                "id": livro[0],
+                "title": livro[1],
+                "category": livro[2],
+                "author": livro[3],
+                "image_url": livro[4]
+            })
+
+        return jsonify(livros_list), 200
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": "Erro inesperado"}), 500
+
 if __name__ == "__main__":
     app.run(debug=True)

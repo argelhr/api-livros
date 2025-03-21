@@ -40,7 +40,19 @@ def save():
 
             conn.commit()
 
-        return jsonify({"message": "Livro cadastrado com sucesso"}), 201
+            livro_inserido = conn.execute("SELECT * FROM BOOKS ORDER BY id DESC",).fetchone()
+            print(livro_inserido)
+
+        livro_inserido = {
+            "id": livro_inserido[0],
+            "title": livro_inserido[1],
+            "category": livro_inserido[2],
+            "author": livro_inserido[3],
+            "image_url": livro_inserido[4]
+        }
+
+
+        return jsonify({"message": "Livro cadastrado com sucesso", "livro": livro_inserido}), 201
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"error": "Erro inesperado"}), 500

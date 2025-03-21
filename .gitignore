@@ -1,0 +1,6 @@
+venv/
+env/
+.venv/
+
+*.db
+database.db

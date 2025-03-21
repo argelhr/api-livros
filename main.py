@@ -57,6 +57,10 @@ def save():
         print(f"Error: {e}")
         return jsonify({"error": "Erro inesperado"}), 500
 
+@app.route("/")
+def home():
+    return "<h1>X-tudo, batata-frita, coca trincando de gelada, strogonoff; Sempre acaba em comida, agora é a vez de voces ficar com fome :D </h1>"
+
 
 @app.route("/api/livros", methods=["GET"])
 def get_livros():

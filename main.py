@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -61,8 +61,7 @@ def save():
 
 @app.route("/")
 def home():
-    return "<h1>X-tudo, batata-frita, coca trincando de gelada, strogonoff; Sempre acaba em comida, agora é a vez de voces ficar com fome :D </h1>"
-
+    return render_template('index.html')
 
 @app.route("/api/livros", methods=["GET"])
 def get_livros():

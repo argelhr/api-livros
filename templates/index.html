@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação da API</title>
+     <style>
+         *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            height: 100%;
+            min-height: 1000px;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            position:relative;
+            background: linear-gradient(45deg,#115dfc, #0076c4);
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        main {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 5;
+            box-shadow: -15px 106px 42px rgba(0, 0, 0, 0.2),
+                0px 59px 36px rgba(0, 0, 0, 0.05), 0px 26px 26px rgba(0, 0, 0, 0.09),
+                0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+        }
+        figure {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-itens: center;
+            justify-content: center;
+        }
+        figure img {
+            width: 100%;
+            height: 100%;
+        }
+        h1,h2,h3{
+            padding: 8px 0;
+        }
+        p{
+            padding: 4px 0;
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            text-shadow: 4px 2px 2px #7775;
+        }
+        h2 {
+            color: #0056b3;
+        }
+        .hr1 {
+            margin: 0 0 8px 0;
+        }
+        .hr2{
+            margin: 4px 0 8px 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            background: #eef;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        li {
+            padding: 4px;
+            font-family: monospace;
+        }
+        details {
+            margin-bottom: 10px;
+            border: 1px solid #007BFF;
+            border-left: 4px solid #007BFF;
+            border-radius: 5px;
+            padding: 5px 15px;
+            background: #f1f1f1;
+            transition: all 0.8s ease-in-out;
+            height: 100%;
+        }
+        summary {
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+            color: #007BFF;
+            padding: 4px 0;
+        }
+        details[open] {
+            background: #fff;
+            padding: 15px;
+        }
+        code {
+            color: darkred;
+        }
+        .marginTop8{
+            margin-top: 8px;
+        }
+        .marginLeft10{
+            margin-left: 10px;
+        }
+        .marginLeft20{
+            margin-left: 20px;
+        }
+        .box {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(0deg, #cccccc30, #ccccff10);
+            border-radius: 10px;
+            z-index: 3;
+        }
+        .box1 {
+            top: 0px;
+            left: 0px;
+            animation: elevator 5s infinite ease;
+        }
+        .box2 {
+            top: 0;
+            right: 0px;
+            animation: elevator 15s infinite ease;
+        }
+        .box3 {
+            bottom: 0px;
+            left: 15%;
+            animation: elevator 25s infinite ease;
+        }
+        @keyframes elevator {
+            0% { transform: translate(0px, 0px); rotate: 0deg;}
+            50% { transform: translate(25px, 25px); rotate: 180deg;}
+            100% { transform: translate(0px, 0px); rotate: 360deg;}
+        }
+    </style>
+</head>
+<body>
+<figure>
+    <img src="../static/logo.png"/>
+</figure>
+    <main>
+        <h1>Documentação da API</h1>
+        <h2>Bem-vindo a documentação da API de livros.</h2>
+        <hr class="hr1"/>
+        <h3>Esta é a API desenvolvida para fins de estudo e apresentação do desafio final do curso FullStack proporcionado pelo Vai na Web.</h3>
+        <p>Aqui são utilizados as tecnologias de API <strong>Flask</strong> e <strong>SQLite</strong>.</p>
+        <p>A API, neste momento, possui três endpoints, os quais: permitem visualizar esta documentação, o cadastro e a listagem de livros doados.</p>
+        <hr class="hr2"/>
+
+        <h2>Endpoints</h2>
+        <p>Abaixo a listagem de endpoints, clique em cada um para ver os detalhes:</p>
+
+        <details open>
+            <summary>Página Inicial (GET <code>/</code>)</summary>
+            <div>
+
+            <p>Retorna esta documentação.</p>
+            <p class="custom"><strong>Resposta de Sucesso (200)</strong>:</p>
+            <ul>
+                <li>Está página mesmo :D</li>
+            </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>Doar um livro (POST <code>/api/doar</code>)</summary>
+            <p>Adiciona um novo livro ao banco de dados.</p>
+            <p><strong>Corpo da Requisição (JSON)</strong>:</p>
+            <ul>
+                <li>"title": "Nome do Livro"</li>
+                <li>"category": "Categoria"</li>
+                <li>"author": "Autor"</li>
+                <li>"image_url": "URL da Imagem"</li>
+            </ul>
+            <p class="custom"><strong>Resposta de Sucesso (201)</strong>:</p>
+            <ul>
+                <li>{</li>
+                <li class="marginLeft10">message": "Livro cadastrado com sucesso"</li>
+                <li class="marginLeft10">livro": {</li>
+                <li class="marginLeft20">"id": 1,</li>
+                <li class="marginLeft20">"title": "Nome do Livro",</li>
+                <li class="marginLeft20">"category": "Categoria",</li>
+                <li class="marginLeft20">"author": "Autor",</li>
+                <li class="marginLeft20">"image_url": "URL da Imagem"</li>
+                <li>}</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary>Listar todos os livros (GET <code>/api/livros</code>)</summary>
+            <p>Retorna uma lista de todos os livros cadastrados.</p>
+            <p class="custom"><strong>Resposta de Sucesso (200)</strong>:</p>
+            <ul>
+                <li>[</li>
+                <li class="marginLeft10">{</li>
+                <li class="marginLeft20">"id": 1,</li>
+                <li class="marginLeft20">"title": "Nome do Livro",</li>
+                <li class="marginLeft20">"category": "Categoria",</li>
+                <li class="marginLeft20">"author": "Autor",</li>
+                <li class="marginLeft20">"image_url": "URL da Imagem"</li>
+                <li class="marginLeft10">}</li>
+                <li>]</li>
+            </ul>
+        </details>
+
+    </main>
+    <footer>
+
+    </footer>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+</body>
+</html>
